@@ -3,3 +3,9 @@ pinyougou-sellergoods-service/target
 pinyougou-dao/target
 pinyougou-common/target
 pinyougou-common/.classpath
+pinyougou-parent/pinyougou-dao/.settings
+pinyougou-parent/pinyougou-sellergoods-service/target
+pinyougou-parent/pinyougou-dao/target
+pinyougou-parent/pinyougou-common/target
+pinyougou-parent/pinyougou-common/.classpath
+
