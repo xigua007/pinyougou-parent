@@ -1,3 +1,4 @@
+*.target
 pinyougou-dao/.settings
 pinyougou-sellergoods-service/target
 pinyougou-dao/target
@@ -9,7 +10,3 @@ pinyougou-parent/pinyougou-dao/target
 pinyougou-parent/pinyougou-common/target
 pinyougou-parent/pinyougou-common/.classpath
 
-*.MF
-*.prefs
-*.MF
-*.MF
