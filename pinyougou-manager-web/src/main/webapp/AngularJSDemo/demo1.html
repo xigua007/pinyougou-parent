@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="angular.min.js"></script>
+</head>
+<!-- ng-init="xx='西门吹牛'"初始化xx的值 -->
+<body ng-app ng-init="xx='西门吹牛'">
+<!-- ng-app作用是告诉子元素一下的指令是归angularJs的,angularJs会识别的 -->
+{{xx}}&nbsp{{100+100}}
+<hr><br>
+
+<!-- 双向绑定  ng-model="name"定义了一个name的全局变量 -->
+请输入姓名:<input ng-model="name">
+<p>
+{{name}}
+<hr>
+
+<!-- 指令 -->
+</body>
+</html>
