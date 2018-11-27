@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<title>angular事件指令</title>
+<script src="angular.min.js"></script>
+<script>
+
+	//建立模块名app:myApp模块名称,[]是其他模块
+	var app = angular.module("myApp",[]);
+	//通过模块来创建控制器,他有两个参数,第一个是控制器的名称，第二个是函数
+	//&scope是控制层和视图层传递数据的桥梁，&scope可以放变量，可以放方法
+	app.controller("myController",function($scope){
+		//视图层变量要通过&scope来获取
+		$scope.add = function() {
+			$scope.z = parseInt($scope.x, 0)+ parseInt($scope.y, 0);
+		}
+		
+	});
+
+</script>
+</head>
+<!-- 指定模块名为myApp这个模块 -->
+<body  ng-app="myApp" ng-controller="myController">
+第一个数:&nbsp<input ng-model="x">
+第二个数:&nbsp<input ng-model="y">
+<button ng-click="add()">运算</button>
+{{z}}
+</body>
+</html>

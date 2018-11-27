@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<title>angular循环数组</title>
+<script src="angular.min.js"></script>
+<script>
+
+	//建立模块名app:myApp模块名称,[]是其他模块
+	var app = angular.module("myApp",[]);
+	//通过模块来创建控制器,他有两个参数,第一个是控制器的名称，第二个是函数
+	//&scope是控制层和视图层传递数据的桥梁，&scope可以放变量，可以放方法
+	app.controller("myController",function($scope){
+		$scope.list = [
+		               {name:'张三',shuxue:100,yuwen:100},
+		               {name:'李四',shuxue:60,yuwen:30},
+		               {name:'王五',shuxue:10,yuwen:2}
+			];
+	});
+
+</script>
+</head>
+<!-- 指定模块名为myApp这个模块 -->
+<body  ng-app="myApp" ng-controller="myController">
+
+<table>
+	<tr>
+		<td>姓名</td>
+		<td>数学</td>
+		<td>语文</td>
+	</tr>
+	<tr ng-repeat="entity in list">
+		<td>{{x.name}}</td>
+		<td>{{x.shuxue}}</td>
+		<td>{{x.yuwen}}</td>
+	</tr>
+
+</table>
+
+</body>
+</html>
