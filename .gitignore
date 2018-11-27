@@ -1,3 +1,6 @@
 /.settings
 dubbo.xsd
 /pinyougou-manager-web/.settings
+pinyougou-manager-web/src/main/resources/spring/springmvc.xml
+pinyougou-manager-web/src/main/resources/spring/springmvc.xml
+pinyougou-shop-web/src/main/resources/spring/springmvc.xml
