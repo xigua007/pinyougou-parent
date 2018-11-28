@@ -76,7 +76,11 @@
 			<artifactId>servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.5.8</version>
+        </dependency>
 		<dependency>
 			<groupId>com.pinyougou</groupId>
 			<artifactId>pinyougou-sellergoods-interface</artifactId>
