@@ -18,6 +18,8 @@
 	<script>
 		var app = angular.module("pinyougou",['pagination']);
 		 app.controller("brandController",function($scope,$http){
+			 
+			//获取所有品牌列表
 			$scope.findAll=function(){
 				$http.get("../brand/findAll.do").success(
 					function(response) {
@@ -37,10 +39,12 @@
 					}
 				};
 			
+			//刷新列表
 			$scope.reloadList = function(){
 				$scope.findPage($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
 			}
 			
+			//查找当前页的品牌列表
 			$scope.findPage = function(page,size){
 				$http.get("../brand/findPage.do?page=" + page + "&size=" + size).success(
 					function(response){
@@ -50,8 +54,13 @@
 				);
 			}
 			
-			$scope.add=function(){
-				$http.post("../brand/add.do",$scope.entity).success(
+			//增加或修改品牌
+			$scope.save=function(){
+				var methodName = "add.do"
+				if($scope.entity.id != null){
+					methodName = "update.do"
+				}
+				$http.post("../brand/" + methodName,$scope.entity).success(
 					function(response){
 						if(response.success){
 							$scope.reloadList();
@@ -60,7 +69,15 @@
 					}	
 				);
 			}
-
+			
+			//查找单个品牌
+			$scope.findOne = function(id){
+				$http.get("../brand/findOne.do?id="+id).success(
+					function(response){
+						$scope.entity = response;
+					}		
+				)
+			}
 		});
 	</script>
 
@@ -114,7 +131,7 @@
 									      <td>{{entity.name}}</td>									     
 		                                  <td>{{entity.firstChar}}</td>		                                 
 		                                  <td class="text-center">                                           
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  >修改</button>                                           
+		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  ng-click="findOne(entity.id)">修改</button>                                           
 		                                  </td>
 			                          </tr>
 			                      </tbody>
@@ -153,7 +170,7 @@
 			 </table>				
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="add()">保存</button>
+			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save()">保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>
