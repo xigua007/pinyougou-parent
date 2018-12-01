@@ -72,8 +72,23 @@ public class SpecificationServiceImpl implements SpecificationService {
 	 * 修改
 	 */
 	@Override
-	public void update(TbSpecification specification){
-		specificationMapper.updateByPrimaryKey(specification);
+	public void update(Specification specification){
+		//获取规格实体
+		TbSpecification tbspecification = specification.getSpecification();				
+		specificationMapper.updateByPrimaryKey(tbspecification);	
+		
+		//先删除原来规格对应的规格选项
+		TbSpecificationOptionExample example = new TbSpecificationOptionExample();
+		com.pinyougou.pojo.TbSpecificationOptionExample.Criteria criteria = example.createCriteria();
+		criteria.andSpecIdEqualTo(tbspecification.getId());
+		specificationOptionMapper.deleteByExample(example);
+		
+		//获取规格选项集合
+		List<TbSpecificationOption> specificationOptionList = specification.getSpecificationOptionList();
+		for( TbSpecificationOption option:specificationOptionList){
+			option.setSpecId(tbspecification.getId());//设置规格ID
+			specificationOptionMapper.insert(option);//新增规格
+		}
 	}	
 	
 	/**
@@ -101,7 +116,14 @@ public class SpecificationServiceImpl implements SpecificationService {
 	@Override
 	public void delete(Long[] ids) {
 		for(Long id:ids){
+			//删除规格表数据
 			specificationMapper.deleteByPrimaryKey(id);
+			
+			//删除规格选项数据
+			TbSpecificationOptionExample example = new TbSpecificationOptionExample();
+			com.pinyougou.pojo.TbSpecificationOptionExample.Criteria criteria= example.createCriteria();
+			criteria.andSpecIdEqualTo(id);
+			specificationOptionMapper.deleteByExample(example);
 		}		
 	}
 	
@@ -117,7 +139,6 @@ public class SpecificationServiceImpl implements SpecificationService {
 						if(specification.getSpecName()!=null && specification.getSpecName().length()>0){
 				criteria.andSpecNameLike("%"+specification.getSpecName()+"%");
 			}
-	
 		}
 		
 		Page<TbSpecification> page= (Page<TbSpecification>)specificationMapper.selectByExample(example);		
