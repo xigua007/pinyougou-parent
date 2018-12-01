@@ -77,15 +77,15 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 		);
 	}
 	
-	$scope.entity={spectification:{}, spectificationOptionList:[]};//定义规格选项实体
+	$scope.entity={spectification:{}, specificationOptionList:[]};//定义规格选项实体
 	//添加规格，增加一个规格选项。
 	$scope.addTableRow=function(){
 		//向spectificationOptionList中增加一个空行
-		$scope.entity.spectificationOptionList.push({});
+		$scope.entity.specificationOptionList.push({});
 	}
 	
 	$scope.deleTableRow=function(index){
-		$scope.entity.spectificationOptionList.splice(index,1);
+		$scope.entity.specificationOptionList.splice(index,1);
 	}
     
 });	

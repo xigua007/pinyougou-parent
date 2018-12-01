@@ -13,14 +13,15 @@ import com.pinyougou.pojo.TbSpecificationOption;
  */
 public class Specification implements Serializable{
 	
-	private TbSpecification tbSpecification;
+	private TbSpecification specification;
 	private List<TbSpecificationOption> specificationOptionList;
 	
-	public TbSpecification getTbSpecification() {
-		return tbSpecification;
+
+	public TbSpecification getSpecification() {
+		return specification;
 	}
-	public void setTbSpecification(TbSpecification tbSpecification) {
-		this.tbSpecification = tbSpecification;
+	public void setSpecification(TbSpecification specification) {
+		this.specification = specification;
 	}
 	public List<TbSpecificationOption> getSpecificationOptionList() {
 		return specificationOptionList;
