@@ -29,4 +29,8 @@ app.service('specificationService',function($http){
 	this.search=function(page,rows,searchEntity){
 		return $http.post('../specification/search.do?page='+page+"&rows="+rows, searchEntity);
 	}    	
+	//查找规格下拉列表
+	this.selectOptionList=function(page,rows,searchEntity){
+		return $http.post('../specification/selectOptionList.do');
+	}    	
 });
