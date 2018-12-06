@@ -43,7 +43,7 @@ public class GoodsServiceImpl implements GoodsService {
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 
-	
+	@Autowired
 	private TbGoodsDescMapper goodsDescMapper;
 	/**
 	 * 增加

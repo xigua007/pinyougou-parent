@@ -15,7 +15,8 @@
 	
 	<http use-expressions="false">
 		<intercept-url pattern="/**" access="ROLE_SELLER"/>
-		<form-login login-page="/shoplogin.html" default-target-url="/admin/index.html" authentication-failure-url="/shoplogin.html" always-use-default-target="true"/>
+		<!-- always-use-default-target="true" -->
+		<form-login login-page="/shoplogin.html" default-target-url="/admin/index.html" authentication-failure-url="/shoplogin.html" />
 		<csrf disabled="true"/>
 		<!-- 解决框架页不能显示内容的问题 -->
 		<headers>
@@ -43,7 +44,7 @@
 
 	<!-- 引用dubbo 服务 -->
 	<dubbo:application name="pinyougou-shop-web" />
-	<dubbo:registry address="zookeeper://192.168.25.133:2181"/>
+	<dubbo:registry address="zookeeper://192.168.25.131:2181"/>
 	<dubbo:reference id="sellerService" interface="com.pinyougou.sellergoods.service.SellerService"></dubbo:reference>
 
 	<beans:bean id="bcrytEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></beans:bean>

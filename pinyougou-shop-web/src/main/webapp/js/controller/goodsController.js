@@ -76,5 +76,21 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 			}			
 		);
 	}
+	
+	//添加商品
+	$scope.add=function(){			
+		$scope.entity.goodsDesc.introduction = editor.html()
+		goodsService.add( $scope.entity  ).success(
+			function(response){
+				if(response.success){
+					alert("新增成功");
+		        	$scope.entity = {};//清空页面
+		        	editor.html("");//清空富文本编辑器内容
+				}else{
+					alert(response.message);
+				}
+			}		
+		);				
+	}
     
 });	
