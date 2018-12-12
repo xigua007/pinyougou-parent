@@ -1,5 +1,5 @@
  //控制层 
-app.controller('goodsController' ,function($scope,$controller   ,goodsService){	
+app.controller('goodsController' ,function($scope,$controller ,goodsService, itemCatService, typeTemplateService){	
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -79,7 +79,7 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 	
 	//添加商品
 	$scope.add=function(){			
-		$scope.entity.goodsDesc.introduction = editor.html()
+		$scope.entity.goodsDesc.introduction = editor.html();
 		goodsService.add( $scope.entity  ).success(
 			function(response){
 				if(response.success){
@@ -92,5 +92,50 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 			}		
 		);				
 	}
+	
+	$scope.selectItemCat1List=function(){
+		itemCatService.findByParentId(0).success(
+			function(response){
+				$scope.itemCat1List=response;
+			}		
+		);
+	}
     
+	//第一个参数是需要监控的变量，第二个参数是变量发生变化后
+	$scope.$watch("entity.goods.category1Id",function(newValue, oldValue){
+		itemCatService.findByParentId(newValue).success(
+			function(response){
+				$scope.itemCat2List=response;
+			}		
+		);
+	});
+	
+	//第一个参数是需要监控的变量，第二个参数是变量发生变化后
+	$scope.$watch("entity.goods.category2Id",function(newValue, oldValue){
+		itemCatService.findByParentId(newValue).success(
+			function(response){
+				$scope.itemCat3List=response;
+			}		
+		);
+	});
+	
+	$scope.$watch("entity.goods.category3Id",function(newValue, oldValue){
+		itemCatService.findOne(newValue).success(
+			function(response){
+				$scope.entity.goods.typeTemplateId=response.typeId;
+			}		
+		);
+	});
+	
+	$scope.$watch("entity.goods.typeTemplateId",function(newValue, oldValue){
+		typeTemplateService.findOne(newValue).success(
+			function(response){
+				$scope.typeTemplate = response;
+				$scope.typeTemplate.brandIds = JSON.parse($scope.typeTemplate.brandIds);
+				$scope.entity.goodsDesc.customAttributeItems = JSON.parse($scope.typeTemplate.customAttributeItems);
+				alert($scope.entity.goodsDesc.customAttributeItems)
+			}		
+		);
+	});
+	
 });	
