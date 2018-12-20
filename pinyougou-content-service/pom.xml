@@ -1,14 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.pinyougou</groupId>
-		<artifactId>pinyougou-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
-	<artifactId>pinyougou-manager-web</artifactId>
-	<packaging>war</packaging>
-	<dependencies>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.pinyougou</groupId>
+    <artifactId>pinyougou-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>pinyougou-content-service</artifactId>
+  <packaging>war</packaging>
+  <dependencies>
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -81,33 +82,14 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.5.8</version>
         </dependency>
-        
-        <dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>4.1.0.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>4.1.0.RELEASE</version>
-		</dependency>
-        
-		<dependency>
-			<groupId>com.pinyougou</groupId>
-			<artifactId>pinyougou-sellergoods-interface</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.pinyougou</groupId>
-			<artifactId>pinyougou-sellergoods-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<type>war</type>
-		</dependency>
 		<dependency>
 			<groupId>com.pinyougou</groupId>
 			<artifactId>pinyougou-content-interface</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.pinyougou</groupId>
+			<artifactId>pinyougou-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
@@ -119,10 +101,14 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<port>9101</port>
+					<!-- 指定端口 -->
+					<port>9002</port>
+					<!-- 请求路径 -->
 					<path>/</path>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+  
+  
 </project>
